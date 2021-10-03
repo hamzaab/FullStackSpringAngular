@@ -4,6 +4,8 @@ import java.util.*;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,7 +22,7 @@ public class EtudiantController {
 	Etudiant e1 = new Etudiant(1, "hamza", "hamza@gmail.com");
 	Etudiant e2 = new Etudiant(2, "ali", "ali@gmail.com");
 	Etudiant e3 = new Etudiant(3, "ahmed", "ahmed@gmail.com");
-	Etudiant e4 = new Etudiant(3, "salah", "salah@gmail.com");
+	Etudiant e4 = new Etudiant(4, "salah", "salah@gmail.com");
 	etudiants.add(e1);
 	etudiants.add(e2);
 	etudiants.add(e3);
@@ -37,7 +39,6 @@ public class EtudiantController {
 		model.addAttribute("location", lieu);
 		return "info";
 	}
-
 	
 	@RequestMapping("/produits")
 	//public String listProduct(Model model)
@@ -110,5 +111,30 @@ public class EtudiantController {
 
 	}
 
+	
+	@GetMapping("/delete/{ide}")
+	public String deleteStudent(@PathVariable("ide")int id)
+	{	
+		Etudiant e = null;
+		System.out.println("id = "+id);
+		e = searchEtudiant(etudiants,id);
+		etudiants.remove(e);
+		
+		return "redirect:../students";
+		
+	
+	}
+	
+	private Etudiant searchEtudiant(List<Etudiant> le , int index) {
+		
+		Etudiant temp = null;
+		for (Etudiant e : le ) {
+			if (e.getId()==index) {
+				temp = e;
+				return e;
+			}
+		}
+		return temp ;
+	}
 	
 }
