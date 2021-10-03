@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -121,9 +122,37 @@ public class EtudiantController {
 		etudiants.remove(e);
 		
 		return "redirect:../students";
-		
-	
 	}
+	
+	@GetMapping("/update/{ide}")
+	public ModelAndView GetUpdateStudent(@PathVariable("ide")int id)
+	{	
+		Etudiant e = null;
+		System.out.println("id = "+id);
+		
+		ModelAndView mv = new ModelAndView();
+		e = searchEtudiant(etudiants,id);
+		
+		mv.addObject("etudiantToUpdate", e); 
+		
+		mv.setViewName("updateStudent");
+		return mv;
+	}
+	
+	@PostMapping("/update")
+	public String UpdateStudent(Etudiant et)
+	{	
+		
+		System.out.println(et);
+		
+		int index = searchIndex(etudiants,et);
+		etudiants.set(index, et);
+		
+		return "redirect:students";
+	}
+	
+	
+	
 	
 	private Etudiant searchEtudiant(List<Etudiant> le , int index) {
 		
@@ -135,6 +164,19 @@ public class EtudiantController {
 			}
 		}
 		return temp ;
+	}
+	
+	private int searchIndex(List<Etudiant> le, Etudiant e) {
+
+		int compteur = -1;
+		// Etudiant temp = null;
+		for (Etudiant temp : le) {
+			compteur++;
+			if (temp.getId() == e.getId()) {
+				return compteur;
+			}
+		}
+		return compteur;
 	}
 	
 }

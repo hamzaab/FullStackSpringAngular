@@ -1,0 +1,45 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link type="text/css" rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+<body>
+
+<h1 align="center">Update étudiant</h1>
+<br>
+
+	<form action="../update" method="POST" th:object="${etudiantToUpdate}">
+	
+	<div class="container">
+	
+	<!--
+	<div class="row">
+		 <div class="col-6" align="right"><label>ID</label></div>
+		 <div class="col-6"><input type="number" name="id" /></div>
+	  </div-->
+	  
+	   <div class="col-6"><input type="hidden" th:field="*{id}"   name="id" /></div>
+	
+	  <div class="row"> 
+		<div class="col-6" align="right"><label>Nom</label></div>
+		<div class="col-6"><input type="text"  th:field="*{nom}"  name="nomEtudiant" /></div>
+		<!--<div class="col-6"><input type="text"  th:value="${etudiantToUpdate.nom}"   name="nomEtudiant" /></div>-->
+	  </div>
+	  
+	  <div class="row"> 
+		<div class="col-6" align="right"><label>Email</label></div>
+		<div class="col-6"><input type="text"  th:value="${etudiantToUpdate.email}" name="email" /></div>
+	  </div>
+	<div class="row"> 
+	 <div class="col-6" align="right"></div>
+	 <div class="col-6"><input class="btn btn-warning" type="submit" value="update"/></div>
+	</div>
+	</div>
+	
+
+	</form>
+
+	
+</body>
+
+</html>

@@ -23,7 +23,7 @@
 				<td th:text="${e.nom} "></td>
 				<td th:text="${e.email} "> 
 				<td> 
-				<a th:href="@{/etudiant/update/{id}(id=${e.id})}" class="btn btn-warning">Modifier</a>
+				<a th:href="@{/etudiant/update/{ide}(ide=${e.id})}" class="btn btn-warning">Modifier</a>
 				<a th:href="@{/etudiant/delete/{ide}(ide=${e.id})}" class="btn btn-danger">Supprimer</a>
 				</td>
 			</tr>
