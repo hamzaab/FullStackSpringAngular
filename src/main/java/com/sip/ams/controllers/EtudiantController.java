@@ -142,7 +142,6 @@ public class EtudiantController {
 	@PostMapping("/update")
 	public String UpdateStudent(Etudiant et)
 	{	
-		
 		System.out.println(et);
 		
 		int index = searchIndex(etudiants,et);
