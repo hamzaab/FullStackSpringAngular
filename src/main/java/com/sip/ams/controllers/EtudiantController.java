@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sip.ams.entities.Etudiant;
 
+@RequestMapping("etudiant")
 @Controller
 public class EtudiantController {
 	
@@ -19,9 +20,11 @@ public class EtudiantController {
 	Etudiant e1 = new Etudiant(1, "hamza", "hamza@gmail.com");
 	Etudiant e2 = new Etudiant(2, "ali", "ali@gmail.com");
 	Etudiant e3 = new Etudiant(3, "ahmed", "ahmed@gmail.com");
+	Etudiant e4 = new Etudiant(3, "salah", "salah@gmail.com");
 	etudiants.add(e1);
 	etudiants.add(e2);
 	etudiants.add(e3);
+	etudiants.add(e4);
 	}
 	
 	@RequestMapping("/home")
